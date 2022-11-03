@@ -9,27 +9,29 @@
     <link rel="stylesheet" href="./assets/style.css">
     <title>Coding Quiz</title>
 </head>
-<header class="header">
-        <a href="">High Score</a>
-        <span id="countdown"></h1>
-</header>
-<body>
-    
-    <section class="container">
-        <div id = "question-container" class="question-container">
-            <div class="controls" id="question">question</div>
-            <div id ="answer-btn" class ="layout">
-                <button id="answer" class="answer-buttons hide">Answer 1</button>
-                <button id ="answer2" class="answer-buttons hide">Answer 2</button>
-                <button id ="answer3" class="answer-buttons hide">Answer 3</button>
-                <button id ="answer4" class="answer-buttons hide">Answer 4</button>
 
+<body>
+    <header class="header">
+        <a href="">Veiw High Scores</a>
+        
+        <span id="countdown">Time:</span>
+    </header>
+    <main>
+        <section>
+            <div class="question-container">
+                <h1 id="main-header">Coding Quiz Challenge</h1>
+                <p id="question-text" class = "question">
+                    Try to answer the following code-related questions within the time limit.
+                    Keep in mind that incorrect answers will be penalize your score/time by ten seconds!
+                </p>
+                <div id="answer-buttons">
+                <button id="start" class="btns">Start Quiz</button>
+                </div>
             </div>
-            <div class="controls">
-                <button id="start" class="start-button btn">Start</button>
-            </div>
-        </div>
-    </section>
+        </section>
+        <footer id="response""></footer>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="./assets/script.js"></script>
 </body>
 
