@@ -3,38 +3,52 @@ var questionEl= $('#question-text');
 var startBtnEl= $('#start');
 var answerBtnsEl= $('#answer-buttons');
 var questionCount=0;
+var questionContEl= $('.question-container');
 
 var questions = [
     {
-      question: 'What is 2 + 2?',
+      question: 'Comonly used data types do not include: ?',
       answers: [
-        { text: '4', correct: true },
-        { text: '22', correct: false }
+        { text: 'strings', correct: false },
+        { text: 'booleans', correct: false },
+        { text: 'alerts', correct: true },
+        { text: 'numbers', correct: false }
       ]
     },
     {
-      question: 'Who is the best YouTuber?',
+      question: 'the condition in an if/ else statement is enclose with _____?',
       answers: [
-        { text: 'Web Dev Simplified', correct: true },
-        { text: 'Traversy Media', correct: true },
-        { text: 'Dev Ed', correct: true },
-        { text: 'Fun Fun Function', correct: true }
+        { text: 'quotes', correct: false },
+        { text: 'curly brackets', correct: false },
+        { text: 'parenthesis', correct: true },
+        { text: 'square brackets', correct: false }
       ]
     },
     {
-      question: 'Is web development fun?',
+      question: 'Arrays in JavaScript can be used to store ______',
       answers: [
-        { text: 'Kinda', correct: false },
-        { text: 'YES!!!', correct: true },
-        { text: 'Um no', correct: false },
-        { text: 'IDK', correct: false }
+        { text: 'numbers and strings', correct: false },
+        { text: 'other arrays', correct: false },
+        { text: 'booleans', correct: false },
+        { text: 'all of the above', correct: true }
       ]
     },
     {
-      question: 'What is 4 * 2?',
+      question: 'String values must be closed within ______ when being assigned to variables?',
       answers: [
-        { text: '6', correct: false },
-        { text: '8', correct: true }
+        { text: 'commas', correct: false },
+        { text: 'curely brackets', correct: false },
+        { text: 'qoutes', correct: true },
+        { text: 'parenthesis', correct: false }
+      ]
+    },
+    {
+      question: 'A very useful tool used during developement and debugging for printing content to the debugger is:',
+      answers: [
+        { text: 'JavaScript', correct: false },
+        { text: 'terminal/bash', correct: false },
+        { text: 'for loops', correct: false },
+        { text: 'console.log', correct: true }
       ]
     }
   ]
@@ -43,7 +57,8 @@ startBtnEl.on('click', startQuiz);
 function startQuiz(){
     startBtnEl.remove();
     h1El.remove();
-    console.log(questions[questionCount]);
+
+    
     displayQuestion(questions[questionCount]);
     createAnswers(questions[questionCount]);
     
@@ -54,8 +69,9 @@ function createAnswers(answer){
   for(let i=0; i<answer.answers.length; i++){
     var answersButton= $('<button>');
     answersButton.text(answer.answers[i].text);
+    questionContEl.css('align-items', 'start' );
+    answersButton.addClass('answer-buttons')
     answerBtnsEl.append(answersButton);
-
   }
 }
 
