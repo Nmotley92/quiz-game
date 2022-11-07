@@ -66,4 +66,8 @@ section {
   margin: .5em;
   padding: .25em;
   
+  
+}
+.answer-buttons:hover, .btns:hover {
+  background-color: blueviolet;
 }

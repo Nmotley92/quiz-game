@@ -4,6 +4,8 @@ var startBtnEl= $('#start');
 var answerBtnsEl= $('#answer-buttons');
 var questionCount=0;
 var questionContEl= $('.question-container');
+var answerKey= [];
+
 
 var questions = [
     {
@@ -61,7 +63,12 @@ function startQuiz(){
     
     displayQuestion(questions[questionCount]);
     createAnswers(questions[questionCount]);
+    answerBtnsEl.on('click', function(event){
+      console.log(event)
     
+      
+      
+    });
   
 }
 function createAnswers(answer){
@@ -69,9 +76,14 @@ function createAnswers(answer){
   for(let i=0; i<answer.answers.length; i++){
     var answersButton= $('<button>');
     answersButton.text(answer.answers[i].text);
+    jQuery.data(answersButton, "correct", {
+      correct: answer.answers[i].correct,
+    } );
     questionContEl.css('align-items', 'start' );
-    answersButton.addClass('answer-buttons')
+    answersButton.addClass('answer-buttons');
     answerBtnsEl.append(answersButton);
+    
+    
   }
 }
 
@@ -82,9 +94,11 @@ function displayQuestion(question){
   
 }
 
-function checkAnswer(){
-
+function checkAnswer(event){
+  
+  
+  
 }
-function diplayResponse(){
+function displayResponse(){
 
 }
