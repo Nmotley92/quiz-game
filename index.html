@@ -12,7 +12,7 @@
 
 <body>
     <header class="header">
-        <a href="">Veiw High Scores</a>
+        
         
         <span id="countdown">Time:</span>
     </header>
@@ -26,15 +26,29 @@
                 </p>
                 <button id="start" class="btns">Start Quiz</button>
                 <div id="answer-buttons">
-                
+                    <button class = "answer-buttons" id = "btn1"></button>
+                    <button class = "answer-buttons" id = "btn2"></button>
+                    <button class = "answer-buttons" id = "btn3"></button>
+                    <button class = "answer-buttons" id = "btn4"></button>
                 </div>
+                <div id="response">
+                    
+                </div>
+                
+
+                <span id="enter">Please Enter your intials <input type="text"  id="input" name="input" placeholder="Enter initials" /></span>
+                <button id="submit">Submit</button>
+                <button id ="go-back">go back</button>
             </div>
         
         </section>
-        <footer id="response"></footer>
+        <ol id="high-list">
+            <p id="title">High Scores</p>
+               
+        </ol>
     </main>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="./assets/script.js"></script>
 </body>
 
-</html>/
+</html>
