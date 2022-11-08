@@ -16,6 +16,7 @@ var submitEl = $('#submit');
 var goBackEl = $('#go-back');
 var oderlistEl = $('#high-list');
 var pEl = $('#title');
+var liEl = $('list');
 
 var questions = [{
     question: 'Comonly used data types do not include: ?',
@@ -176,7 +177,7 @@ function countdown() {
 startBtnEl.on('click', startQuiz)
 
 function startQuiz() {
-  
+
   countdown();
   startBtnEl.remove();
   h1El.remove();
@@ -247,7 +248,7 @@ function displayResponse(clicked) {
     response.text("Correct");
     displayQuestion(questions[questionCount]);
     createAnswers(questions[questionCount]);
-    if (questionCount == 5) {
+    if (questionCount == 5 || timeLeft == 0) {
       displayScore();
     }
 
@@ -256,13 +257,14 @@ function displayResponse(clicked) {
     timeLeft = timeLeft - 10;
     displayQuestion(questions[questionCount]);
     createAnswers(questions[questionCount]);
-    if (questionCount == 5) {
+    if (questionCount == 5 || timeLeft == 0) {
       displayScore();
     }
 
   }
 
 }
+var highScoreArray = [];
 
 function displayScore() {
   questionEl.text("All done");
@@ -278,20 +280,58 @@ function displayScore() {
   inputEl.show();
   submitEl.show();
   pEl.show();
+  // displayHighList();
 
-  var initals = $('input[name="input"]').val();
   submitEl.on('click', () => {
+    if(!inputEl.val()){
+      displayScore();
+      return;
+    }
+    $(".bye").remove();
+    submitEl.hide();
+    inputEl.hide();
+    span.hide();
+    answerBtnsEl.hide();
+    
     var highScore = {
       name: [inputEl.val()],
       score: [score],
     }
 
-    localStorage.setItem("HighScore", JSON.stringify(highScore));
+    var nameScore = highScore.name + " " + highScore.score;
 
-    var listItem = $('<li>');
-    listItem.text(highScore.name + " " + highScore.score);
-    oderlistEl.append(listItem);
+    highScoreArray.push(nameScore);
 
 
+
+    displayHighList(highScoreArray);
   });
+}
+
+function displayHighList(e) {
+  var oldHighScore = JSON.parse(localStorage.getItem("HighScoreNew"));
+  var highScoreArray = e;
+  if (!oldHighScore) {
+    localStorage.setItem("HighScoreNew", JSON.stringify(highScoreArray));
+    var firstScore = $('<li>');
+    firstScore.text(highScoreArray[0]);
+    console.log(firstScore);
+    oderlistEl.append(firstScore);
+  } else {
+    var newHigh = oldHighScore.concat(highScoreArray);
+    console.log(newHigh)
+    newHigh.sort(function(a, b){return a - b});
+    
+    
+    localStorage.setItem("HighScoreNew", JSON.stringify(newHigh));
+    console.log(newHigh)
+
+    for (let i = 0; i < newHigh.length; i++) {
+      var listItem = $('<li>');
+      listItem.text(newHigh[i]);
+      listItem.addClass("bye");
+
+      oderlistEl.append(listItem);
+    }
+  }
 }
