@@ -275,7 +275,6 @@ function displayScore() {
   submitEl.on('click', () => {
     if (!inputEl.val()) {
       alert("please enter your initials");
-      
       return;
     }
     // removes already created high scores
