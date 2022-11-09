@@ -28,7 +28,7 @@
 </p>
 
 ## About
-User will select start game. They have 75 seconds to finish the quiz but will lose 10 seconds for evry wrong answer.  Once complete users will be able to save high scores. 
+User will select start game. They have 75 seconds to finish the quiz but will lose 10 seconds for every wrong answer.  Once complete users will be able to save high scores. 
 
 ## Tech Stack
 <img src="https://img.shields.io/badge/Javascript-05122A?style=flat&logo=javascript" alt="javascript Badge" height="25">&nbsp;
