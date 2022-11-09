@@ -2,7 +2,6 @@ var h1El = $('#main-header');
 var questionEl = $('#question-text');
 var startBtnEl = $('#start');
 var answerBtnsEl = $('#answer-buttons');
-var questionCount = 0;
 var questionContEl = $('.question-container');
 var response = $('#response');
 var span = $('#enter')
@@ -13,10 +12,12 @@ var btn4 = $('#btn4');
 var timerEl = $('#countdown');
 var inputEl = $('#input');
 var submitEl = $('#submit');
-var goBackEl = $('#go-back');
 var oderlistEl = $('#high-list');
 var pEl = $('#title');
-var liEl = $('list');
+var mainEl = $('main');
+var questionCount = 0;
+var timeLeft = 75;
+var highScoreLink = $('high-link');
 
 var questions = [{
     question: 'Comonly used data types do not include: ?',
@@ -139,45 +140,39 @@ var questions = [{
     ]
   }
 ]
+// Hides all elements I need later
 btn1.hide();
 btn2.hide();
 btn3.hide();
 btn4.hide();
 inputEl.hide();
 span.hide();
-goBackEl.hide();
 submitEl.hide();
 pEl.hide();
+response.hide();
 
-
-var timeLeft = 75;
-
+highScoreLink.on('click', () => {
+  displayHighList()
+})
+// sets timer
 function countdown() {
-
-
   var timeInterval = setInterval(function () {
-
-    if (timeLeft > 1) {
-
+    if (timeLeft > 0) {
       timerEl.text('Time:' + timeLeft);
-
       timeLeft--;
     }
     if (questionCount == 5) {
-
       timerEl.textContent = '';
-
       clearInterval(timeInterval)
-
-    } else if (timeLeft == 0)
-      displayScore;
+    } else if (timeLeft == 0) {
+      displayScore();
+    }
   }, 1000);
 }
-
-startBtnEl.on('click', startQuiz)
+// gamestarts
+startBtnEl.on('click', startQuiz);
 
 function startQuiz() {
-
   countdown();
   startBtnEl.remove();
   h1El.remove();
@@ -185,16 +180,19 @@ function startQuiz() {
   btn2.show();
   btn3.show();
   btn4.show();
-
-
   displayQuestion(questions[questionCount]);
   createAnswers(questions[questionCount]);
   clickedAnswer();
+}
+// displays question
+function displayQuestion(question) {
+  questionEl.text(question.question);
+  questionEl.css('font-weight', 'bold');
+  questionEl.css('font-size', '2.2em');
 
 }
 
-
-
+// fills the anser buttons and add a value for telling if it is correct
 function createAnswers(answer) {
   btn1.text(answer.answers[0].text);
   btn2.text(answer.answers[1].text);
@@ -205,9 +203,8 @@ function createAnswers(answer) {
   btn2.value = answer.answers[1].correct;
   btn3.value = answer.answers[2].correct;
   btn4.value = answer.answers[3].correct;
-
 }
-
+// all the possible answer clicks
 function clickedAnswer() {
   var clicked;
   btn1.on('click', () => {
@@ -233,18 +230,11 @@ function clickedAnswer() {
 
   });
 }
-
-function displayQuestion(question) {
-  questionEl.text(question.question);
-  questionEl.css('font-weight', 'bold');
-  questionEl.css('font-size', '2.2em');
-
-}
-
-
+// tells whether right or wrong
 function displayResponse(clicked) {
 
   if (clicked == true) {
+    response.show();
     response.text("Correct");
     displayQuestion(questions[questionCount]);
     createAnswers(questions[questionCount]);
@@ -253,6 +243,7 @@ function displayResponse(clicked) {
     }
 
   } else {
+    response.show();
     response.text("Wrong");
     timeLeft = timeLeft - 10;
     displayQuestion(questions[questionCount]);
@@ -260,12 +251,11 @@ function displayResponse(clicked) {
     if (questionCount == 5 || timeLeft == 0) {
       displayScore();
     }
-
   }
-
 }
-var highScoreArray = [];
 
+var highScoreArray = [];
+// Displays final score
 function displayScore() {
   questionEl.text("All done");
   var score = timeLeft;
@@ -273,64 +263,81 @@ function displayScore() {
   btn2.hide();
   btn3.hide();
   btn4.hide();
-  response.text(" ");
-
+  pEl.hide();
+  timerEl.hide();
+  response.hide();
   answerBtnsEl.text("Your final score is: " + score);
   span.show();
   inputEl.show();
   submitEl.show();
-  pEl.show();
-  // displayHighList();
 
+  // takes user intials
   submitEl.on('click', () => {
-    if(!inputEl.val()){
+    if (!inputEl.val()) {
+      alert("please enter your initials");
       displayScore();
       return;
     }
+    // removes already created high scores
     $(".bye").remove();
     submitEl.hide();
     inputEl.hide();
     span.hide();
     answerBtnsEl.hide();
-    
-    var highScore = {
-      name: [inputEl.val()],
-      score: [score],
-    }
-
-    var nameScore = highScore.name + " " + highScore.score;
-
-    highScoreArray.push(nameScore);
-
-
-
+    questionEl.hide();
+    pEl.show();
+    var name = inputEl.val();
+    // push name and score in
+    highScoreArray.push({
+      name,
+      score
+    });
     displayHighList(highScoreArray);
   });
 }
-
+// creates and shows High Score List
 function displayHighList(e) {
+  // creates go back and clear list buttons
+  var goBack = $('<button>');
+  var clearHigh = $('<button>');
+
+  goBack.text("Go Back To Start");
+  clearHigh.text("Clear High Scores");
+
+  goBack.addClass('high-buttons');
+  clearHigh.addClass('high-buttons');
+
+  mainEl.append(goBack);
+  mainEl.append(clearHigh);
+// if they click go back it reloads the page
+  if (goBack.on('click', () => {
+      window.location.reload()
+    }));
+// clears local storage
+  if (clearHigh.on('click', () => {
+      localStorage.clear();
+      $('.bye').remove();
+    }));
+// pulls from local storage
   var oldHighScore = JSON.parse(localStorage.getItem("HighScoreNew"));
   var highScoreArray = e;
+// if no previous saved data
   if (!oldHighScore) {
     localStorage.setItem("HighScoreNew", JSON.stringify(highScoreArray));
     var firstScore = $('<li>');
-    firstScore.text(highScoreArray[0]);
-    console.log(firstScore);
+    firstScore.text(highScoreArray[0].name + " " + highScoreArray[0].score);
     oderlistEl.append(firstScore);
-  } else {
+  }
+  // adds new hight score to the list
+  else {
     var newHigh = oldHighScore.concat(highScoreArray);
-    console.log(newHigh)
-    newHigh.sort(function(a, b){return a - b});
-    
-    
+    newHigh.sort((a, b) => b.score - a.score);
     localStorage.setItem("HighScoreNew", JSON.stringify(newHigh));
-    console.log(newHigh)
 
     for (let i = 0; i < newHigh.length; i++) {
       var listItem = $('<li>');
-      listItem.text(newHigh[i]);
+      listItem.text(newHigh[i].name + " " + newHigh[i].score);
       listItem.addClass("bye");
-
       oderlistEl.append(listItem);
     }
   }

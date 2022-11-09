@@ -6,17 +6,18 @@
 a{
   text-decoration: none;
 }
+
 .header {
   margin:0 .25em;
   display: flex;
-  justify-content: space-between;
-  
-  
+  justify-content: end;
 }
+
 #main-header{
   font-size:2em;
   text-align: center;
 }
+
 section {
   display: flex;
   justify-content: center;
@@ -28,23 +29,35 @@ section {
   width: 70%;
   margin: 0 1em 1em 1em;
   align-items: center;
- 
-  
-  
 }
+
 .question {
   font-size: 1.5em;
-  
+}
+
+#response {
+  border-top: solid 1px;
+  font-style: italic;
+  font-weight: lighter;
+  color:rgba(116, 114, 114, 0.5);
+  width: 100%;
+  font-size: 2em;
+}
+
+#title {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+#countdown{
+  font-size: 2em;
 
 }
+
 #answer-buttons{
  display:flex;
  flex-direction: column;
- 
-
-
 }
-
 
 .btns {
   align-items: center;
@@ -57,6 +70,10 @@ section {
   color:white;
 }
 
+.high-buttons{
+  margin: 1em;
+}
+
 .answer-buttons{
   border: none;
   background-color: rgba(34, 3, 72, 0.929);
@@ -65,9 +82,8 @@ section {
   font-size: 1.5em;
   margin: .5em;
   padding: .25em;
-  
-  
 }
+
 .answer-buttons:hover, .btns:hover {
   background-color: blueviolet;
 }

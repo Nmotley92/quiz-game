@@ -12,41 +12,35 @@
 
 <body>
     <header class="header">
-        
-        
         <span id="countdown">Time:</span>
     </header>
     <main>
         <section>
             <div class="question-container">
                 <h1 id="main-header">Coding Quiz Challenge</h1>
-                <p id="question-text" class = "question">
+                <p id="question-text" class="question">
                     Try to answer the following code-related questions within the time limit.
                     Keep in mind that incorrect answers will be penalize your score/time by ten seconds!
                 </p>
                 <button id="start" class="btns">Start Quiz</button>
                 <div id="answer-buttons">
-                    <button class = "answer-buttons" id = "btn1"></button>
-                    <button class = "answer-buttons" id = "btn2"></button>
-                    <button class = "answer-buttons" id = "btn3"></button>
-                    <button class = "answer-buttons" id = "btn4"></button>
+                    <button class="answer-buttons" id="btn1"></button>
+                    <button class="answer-buttons" id="btn2"></button>
+                    <button class="answer-buttons" id="btn3"></button>
+                    <button class="answer-buttons" id="btn4"></button>
                 </div>
                 <div id="response">
-                    
                 </div>
-                
-
-                <span id="enter">Please Enter your intials to save your highscore!<input type="text"  id="input" name="input" placeholder="Enter initials" /></span>
+                <span id="enter">Please Enter your intials to save your highscore! <input type="text" id="input"
+                        name="input" maxlength="3" placeholder="Enter initials" /></span>
                 <button id="submit">Submit</button>
-                <button id ="go-back">go back</button>
             </div>
-        
         </section>
         <ol id="high-list">
             <p id="title">High Scores</p>
-            
-               
         </ol>
+        
+
     </main>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="./assets/script.js"></script>
