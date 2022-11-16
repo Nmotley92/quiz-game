@@ -8,11 +8,11 @@
 
 <p align="center">
 	<img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square"/>
-	<img src="https://img.shields.io/github/license/Nmotley92/random-pass-generater?color=green"/>
-	<img src="https://img.shields.io/github/repo-size/Nmotley92/random-pass-generater?color=green"/>
-	<img src="https://img.shields.io/github/last-commit/Nmotley92/random-pass-generater?color=green"/>
-	<img src="https://img.shields.io/github/languages/count/Nmotley92/random-pass-generater?color=green"/>
-	<img src="https://img.shields.io/github/contributors/Nmotley92/random-pass-generater?color=green"/>
+	<img src="https://img.shields.io/github/license/Nmotley92/quiz-game?color=green"/>
+	<img src="https://img.shields.io/github/repo-size/Nmotley92/quiz-game?color=green"/>
+	<img src="https://img.shields.io/github/last-commit/Nmotley92/quiz-game?color=green"/>
+	<img src="https://img.shields.io/github/languages/count/Nmotley92/quiz-game?color=green"/>
+	<img src="https://img.shields.io/github/contributors/Nmotley92/quiz-game?color=green"/>
 </p>
 
 <h4 align="center">
